@@ -17,3 +17,12 @@ load('DU30.dat');
 load('DU35.dat');
 load('DU40.dat');
 load('NACA64.dat');
+
+w = (load('omega.dat'))';     % rotational speed for different wind speeds
+r = (load('radius.dat'))';    % radial positions along the blade r 
+chord = (load('chord.dat'))'; % chord of the blade at different radial positions
+twist = (load('twist.dat'))'; % twist angle of the blade in degrees at different radial positions 
+
+a = 100;
+a_p = 100;
+
