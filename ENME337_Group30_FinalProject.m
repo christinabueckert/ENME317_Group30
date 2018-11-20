@@ -12,15 +12,19 @@ cut_off = 25;
 load('radius.dat'); load('omega.dat'); load('twist.dat');
 load('chord.dat'); load('DU21.dat'); load('DU30.dat');
 load('DU35.dat'); load('DU40.dat'); load('NACA64.dat');
-
-w = omega';     % rotational speed for different wind speeds
+%Sets of functions wrt r
 r = radius';    % radial positions along the blade r 
 chord = chord'; % chord of the blade at different radial positions
 twist = twist'; % twist angle of the blade in degrees at different radial positions 
 
+w = omega';     % rotational speed for different wind speeds
+
+%% Computation of Power Production
+% (1)  -  Initialize a? and a.
 a = 100;
 a_p = 100;
 
+% (2)  -  Compute the flow angle.
 
 
 
