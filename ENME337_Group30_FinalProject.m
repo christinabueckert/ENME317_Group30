@@ -1,49 +1,29 @@
 %{
 % ENME 337, Final Project 
 % Due Dec 3, 2018 WOOOOOO WOOOOO #2
-%}
-close all; clear; clc;
-% Due Dec 3, 2018 WOOOOOO WOOOOO #2
 % given city: calgary, hub height: 85m, air foil: DU40
+%}
 clc;clear;close all;
 
-%preliminary data
+  %PRELIMINARY DATA
 HH=85; %Hub height given in metres 
 Pop=1237656; %from wikipedia page for 2016
 cvn=1000/3600; %conversion factor to multiply by to convert from km/h to m/s
- %WIND SPEED DATA
+  %WIND SPEED DATA
 fileData(cvn); %initializes function the sets up all the wind data
-% sets up each months vector
-JanWS=zeros(31); FebWS=zeros(28); MarWS=zeros(31); AprWS=zeros(30); MayWS=zeros(31); JuneWS=zeros(30);
-JulyWS=zeros(31); AugWS=zeros(31); SeptWS=zeros(30); OctWS=zeros(31); NovWS=zeros(30); DecWS=zeros(31);
+% sets up each months vector of wind speed
 load 'WindSpeeds/Jan_WS.dat';load 'WindSpeeds/Feb_WS.dat';load 'WindSpeeds/Mar_WS.dat';
 load 'WindSpeeds/Apr_WS.dat';load 'WindSpeeds/May_WS.dat';load 'WindSpeeds/June_WS.dat';
 load 'WindSpeeds/July_WS.dat';load 'WindSpeeds/Aug_WS.dat';load 'WindSpeeds/Sept_WS.dat';
 load 'WindSpeeds/Oct_WS.dat';load 'WindSpeeds/Nov_WS.dat';load 'WindSpeeds/Dec_WS.dat';
 
-%WIND SPEED AT HUB HEIGHT// Power Law
-PwrLaw=@(h,v) round(v*(h/15)^(1/7));
-%the subsequent for loops use the defined power law function to set every
-%wind speed value to that at our hub height of 85m; there are 3 loops bc
-%months are either 28, 30, or 31 days long
-for i=1:length(Jan_WS) %31 day loop
-    JanWS(i)=PwrLaw(HH,Jan_WS(i));
-    MarWS(i)=PwrLaw(HH,Mar_WS(i));
-    MayWS(i)=PwrLaw(HH,May_WS(i));
-    JulyWS(i)=PwrLaw(HH,July_WS(i));
-    AugWS(i)=PwrLaw(HH,Aug_WS(i));
-    OctWS(i)=PwrLaw(HH,Oct_WS(i));
-    DecWS(i)=PwrLaw(HH,Dec_WS(i));
-end
-for i=1:length(June_WS)%30day loop
-    AprWS(i)=PwrLaw(HH,Apr_WS(i));
-    JuneWS(i)=PwrLaw(HH,June_WS(i));
-    SeptWS(i)=PwrLaw(HH,Sept_WS(i));
-    NovWS(i)=PwrLaw(HH,Nov_WS(i));
-end
-for i=1:length(FebWS) %28 day loop
-    FebWS(i)=PwrLaw(HH,Feb_WS(i));
-end
+  %WIND SPEED AT HUB HEIGHT// Power Law
+PwrLaw=@(h,v) round(v.*(h/15).^(1/7)); %defines power law function
+%sets wind speed value to that at our hub height of 85m; 
+JanWS = PwrLaw(HH,Jan_WS); FebWS = PwrLaw(HH,Feb_WS); MarWS = PwrLaw(HH,Mar_WS);
+AprWS = PwrLaw(HH,Apr_WS); MayWS = PwrLaw(HH,May_WS); JuneWS = PwrLaw(HH,June_WS);
+JulyWS = PwrLaw(HH,July_WS); AugWS = PwrLaw(HH,Aug_WS); SeptWS = PwrLaw(HH,Sept_WS); 
+OctWS = PwrLaw(HH,Oct_WS); NovWS = PwrLaw(HH,Nov_WS); DecWS = PwrLaw(HH,Dec_WS);
 
 p = 1.23;
 a_c = 0.2; 
