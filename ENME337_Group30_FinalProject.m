@@ -21,6 +21,9 @@ load 'WindDirection/Jan_WD.dat';load 'WindDirection/Feb_WD.dat';load 'WindDirect
 load 'WindDirection/Apr_WD.dat';load 'WindDirection/May_WD.dat';load 'WindDirection/June_WD.dat';
 load 'WindDirection/July_WD.dat';load 'WindDirection/Aug_WD.dat';load 'WindDirection/Sept_WD.dat';
 load 'WindDirection/Oct_WD.dat';load 'WindDirection/Nov_WD.dat';load 'WindDirection/Dec_WD.dat';
+%initalizing vector containing all directions for plots
+WD=[Jan_WD,Feb_WD,Mar_WD,Apr_WD,May_WD,June_WD,July_WD,...
+    Aug_WD,Sept_WD,Oct_WD,Nov_WD,Dec_WD];  
   %WIND SPEED AT HUB HEIGHT// Power Law
 PwrLaw=@(h,v) round(v.*(h/15).^(1/7)); %defines power law function
 %sets wind speed value to that at our hub height of 85m; 
@@ -76,7 +79,10 @@ Ct = @(Cl,Cd,Psi) (Cl*sin(Psi))-(Cd*cos(Psi));
                 
 % (8)  -  If a? and a has changed more than a certain tolerance (use 1e-6), go to step (2) or
                 %else proceed to the next step
-
+   %%
+   %Plots
+   WindPlot(WD);
+   
         
         
 
