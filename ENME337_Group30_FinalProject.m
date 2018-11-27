@@ -16,7 +16,11 @@ load 'WindSpeeds/Jan_WS.dat';load 'WindSpeeds/Feb_WS.dat';load 'WindSpeeds/Mar_W
 load 'WindSpeeds/Apr_WS.dat';load 'WindSpeeds/May_WS.dat';load 'WindSpeeds/June_WS.dat';
 load 'WindSpeeds/July_WS.dat';load 'WindSpeeds/Aug_WS.dat';load 'WindSpeeds/Sept_WS.dat';
 load 'WindSpeeds/Oct_WS.dat';load 'WindSpeeds/Nov_WS.dat';load 'WindSpeeds/Dec_WS.dat';
-
+% Sets up each month's vector of wind direction
+load 'WindDirection/Jan_WD.dat';load 'WindDirection/Feb_WD.dat';load 'WindDirection/Mar_WD.dat';
+load 'WindDirection/Apr_WD.dat';load 'WindDirection/May_WD.dat';load 'WindDirection/June_WD.dat';
+load 'WindDirection/July_WD.dat';load 'WindDirection/Aug_WD.dat';load 'WindDirection/Sept_WD.dat';
+load 'WindDirection/Oct_WD.dat';load 'WindDirection/Nov_WD.dat';load 'WindDirection/Dec_WD.dat';
   %WIND SPEED AT HUB HEIGHT// Power Law
 PwrLaw=@(h,v) round(v.*(h/15).^(1/7)); %defines power law function
 %sets wind speed value to that at our hub height of 85m; 
