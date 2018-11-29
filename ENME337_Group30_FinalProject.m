@@ -1,12 +1,13 @@
 %{
 % ENME 337, Final Project 
-% Due Dec 3, 2018 WOOOOOO WOOOOO #2
+% Due Dec 3, 2018
 % given city: calgary, hub height: 85m, air foil: DU40
 %}
 clc;clear;close all;
 
   %PRELIMINARY DATA
 HH=85; %Hub height given in metres 
+pop = 1237656; % population of the City of Calgary in 2016
 cvn=1000/3600; %conversion factor to multiply by to convert from km/h to m/s
   %WIND SPEED DATA
 fileData(cvn); %initializes function the sets up all the wind data
@@ -51,7 +52,9 @@ power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
 
 %% Calculates the number of turbines needed
 
-[numberOfTurbines, turbinePower, powerNeeded] = calcNumTurbines(power);
+[numberOfTurbines, turbinePower, powerNeeded] = calcNumTurbines(power,pop);
+fprintf('The population of the City of Calgary in 2016 was %d.\nAssuming the electricity consumption per capita is 16.5 MWh, the power needed for the city per year is %.2f MWh.\n',pop,powerNeeded);
+fprintf('A single turbine produced %.2f MWh in 2017, therefore the number of turbines required to power the City of Calgary\nin 2017 would have been %d.\n',turbinePower,numberOfTurbines);
 
       %%
    %Plots
