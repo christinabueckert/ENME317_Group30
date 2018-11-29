@@ -1,4 +1,4 @@
-function [numTurbines] = calcNumTurbines(P)
+function [numTurbines, turbinePower, powerNeeded] = calcNumTurbines(P)
 %This funtion calculates the total power and thus the number of turbines
 %needed
 
