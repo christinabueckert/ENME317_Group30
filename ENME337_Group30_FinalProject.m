@@ -53,7 +53,7 @@ power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
 %% Calculates the number of turbines needed
 
 [numberOfTurbines, turbinePower, powerNeeded] = calcNumTurbines(power,pop);
-fprintf('The population of the City of Calgary in 2016 was %d.\nAssuming the electricity consumption per capita is 16.5 MWh, the power needed for the city per year is %.2f MWh.\n',pop,powerNeeded);
+fprintf('The population of the City of Calgary in 2016 was %d. Assuming the electricity consumption per capita is 16.5 MWh,\nthe power needed for the city per year is %.2f MWh.\n',pop,powerNeeded);
 fprintf('A single turbine produced %.2f MWh in 2017, therefore the number of turbines required to power the City of Calgary\nin 2017 would have been %d.\n',turbinePower,numberOfTurbines);
 
       %%
