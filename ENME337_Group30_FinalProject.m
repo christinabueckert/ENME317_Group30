@@ -88,7 +88,7 @@ Ct = @(Cl,Cd,Psi) (Cl*sin(Psi))-(Cd*cos(Psi));
 WD=[Jan_WD,Feb_WD,Mar_WD,Apr_WD,May_WD,June_WD,July_WD,...
     Aug_WD,Sept_WD,Oct_WD,Nov_WD,Dec_WD];
   
-WindPlot(WD,WS31,WS30,WS28);
+WindPlot(WD,WS31,WS30,WS28,chord,twist,r);
    
         
         
