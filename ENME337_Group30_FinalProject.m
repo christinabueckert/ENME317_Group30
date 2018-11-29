@@ -7,7 +7,6 @@ clc;clear;close all;
 
   %PRELIMINARY DATA
 HH=85; %Hub height given in metres 
-Pop=1237656; %from wikipedia page for 2016
 cvn=1000/3600; %conversion factor to multiply by to convert from km/h to m/s
   %WIND SPEED DATA
 fileData(cvn); %initializes function the sets up all the wind data
@@ -48,7 +47,11 @@ B = 3;
 V0 = 1:1:25;
 
 %% Computation of Power Production
-Power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
+power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
+
+%% Calculates the number of turbines needed
+
+numberOfTurbines = calcNumTurbines(power)
 
       %%
    %Plots
