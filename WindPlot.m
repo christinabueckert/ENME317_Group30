@@ -10,7 +10,7 @@ legend('Freq.of Wind Occurance (In # of Hours)','location','southoutside');
 
 %%
 %relative distribution of wind speed// energy output
-Power=[0 Power]; %just adds the power output for the 0 windspeed case
+Power=[0; Power]; %just adds the power output for the 0 windspeed case
 for i=1:7 %7 months with 31 days
     lowlim=min(WS31(i,:)); %finds lower limit of windspeed for the months with 31 days
     uplim=max(WS31(i,:)); %finds the upper limit of windspeed for the months with 31 days
