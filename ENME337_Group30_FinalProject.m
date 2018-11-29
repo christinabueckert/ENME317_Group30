@@ -61,7 +61,7 @@ Power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
 WD=[Jan_WD,Feb_WD,Mar_WD,Apr_WD,May_WD,June_WD,July_WD,...
     Aug_WD,Sept_WD,Oct_WD,Nov_WD,Dec_WD];
   
-WindPlot(WD,WS31,WS30,WS28,chord,twist,r);
+WindPlot(WD,WS31,WS30,WS28,chord,twist,r,Power);
    
         
         
