@@ -32,9 +32,9 @@ for i=1:7    %iterate through the 7 months with 31 days
             figure
             yyaxis left     %sets left y axis as preference for upcoming plot
             bar(x,hours)    %creates a bar graph for windspeed distribution
-            ylabel('Occurance')
+            ylabel('Occurence')
             yyaxis right    %sets right y axis as preference for upcoming plot
-          line(x,Energy)    %creates a line graph for energy output per windspeed
+          line(x,Energy,'Linewidth',3)    %creates a line graph for energy output per windspeed
             xlabel('Windspeed at 85 m Hub Height (m/s)');
             ylabel('Energy Output (Wh) ');
             title([month(i,:),' Windspeed and Energy Distribution']);
@@ -56,9 +56,9 @@ for i=1:4 % iterate through the four months with 30 days
     figure;
     yyaxis left;    %sets left y axis as preference for upcoming plot
     bar(x,hours);   %creates a bar graph for windspeed distribution
-    ylabel('Occurance'); 
+    ylabel('Occurence'); 
     yyaxis right;   %sets right y axis as preference for upcoming plot
-    line(x,Energy); %creates a line graph for energy output per windspeed
+    line(x,Energy,'Linewidth',3); %creates a line graph for energy output per windspeed
     xlabel('Windspeed at 85 m Hub Height (m/s)')
     ylabel('Energy Output (Wh) ');
     title([month(i,:),' Windspeed and Energy Distribution']);
@@ -78,9 +78,9 @@ end
 figure;
 yyaxis left; %sets left y axis as preference for upcoming plot
 bar(x,hours); %creates a bar graph for windspeed distribution
-ylabel('Occurance');
+ylabel('Occurence');
 yyaxis right; %sets right y axis as preference for upcoming plot
-line(x,Energy); %creates a line graph for energy output per windspeed
+line(x,Energy,'Linewidth',3); %creates a line graph for energy output per windspeed
 xlabel('Windspeed at 85 m Hub Height (m/s)')
 ylabel('Energy Output (Wh) ');
 title('Feb Windspeed and Energy Distribution');
