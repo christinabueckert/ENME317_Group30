@@ -1,9 +1,8 @@
-function [numTurbines, turbinePower, powerNeeded] = calcNumTurbines(P)
+function [numTurbines, turbinePower, powerNeeded] = calcNumTurbines(P,pop)
 %This funtion calculates the total power and thus the number of turbines
 %needed
 
-% from wikipedia page for 2016
-pop = 1237656;
+% from wikipedia page for 2016 pop = 1237656;
 
 % converts the units of power to Wh
 convertedPower = P*8760;
@@ -19,7 +18,7 @@ powerNeeded = pop*16.5;
 
 % calculates the number of turbines needed by dividing the total power
 % needed by the city by the power produced by one turbine in a year
-numTurbines = powerNeeded/turbinePower;
+numTurbines = ceil(powerNeeded/turbinePower);
 
 
 end
