@@ -77,7 +77,7 @@ end
           line(x,Energy) %creates a line graph for energy output per windspeed
             xlabel('Windspeed @85 m Hub Height (m/s)')
             ylabel('Energy Output (Wh) ');
-            title([month(i,:),' Windspeed and Energy Distribution']);
+            title('Feb Windspeed and Energy Distribution']);
             grid on
 %%
 %blade geometry 
