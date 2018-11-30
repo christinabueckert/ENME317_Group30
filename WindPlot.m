@@ -8,7 +8,7 @@ polarhistogram(WD(WS<10),deg2rad(0:10:360),'FaceColor','y','FaceAlpha',1);
 polarhistogram(WD(WS<7),deg2rad(0:10:360),'FaceColor','g','FaceAlpha',1);
 polarhistogram(WD(WS<4),deg2rad(0:10:360),'FaceColor','b','FaceAlpha',1);
 
-grid on; title('Wind Rose Plot Calgary 2017'); %Title and set grids
+grid on; title('Wind Rose Plot Calgary 2017: Hours per wind speed range'); %Title and set grids
 thetaticks(0:45/2:360)
 thetaticklabels({'N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'}) % sets tick labels for compass increments
 legend({'10-25 m/s','7-9 m/s','4-6 m/s','0-3 m/s',},'location','northeastoutside');
@@ -35,7 +35,7 @@ for i=1:7    %iterate through the 7 months with 31 days
             ylabel('Occurance')
             yyaxis right    %sets right y axis as preference for upcoming plot
           line(x,Energy)    %creates a line graph for energy output per windspeed
-            xlabel('Windspeed @85 m Hub Height (m/s)');
+            xlabel('Windspeed at 85 m Hub Height (m/s)');
             ylabel('Energy Output (Wh) ');
             title([month(i,:),' Windspeed and Energy Distribution']);
             grid on
@@ -59,7 +59,7 @@ for i=1:4 % iterate through the four months with 30 days
     ylabel('Occurance'); 
     yyaxis right;   %sets right y axis as preference for upcoming plot
     line(x,Energy); %creates a line graph for energy output per windspeed
-    xlabel('Windspeed @85 m Hub Height (m/s)')
+    xlabel('Windspeed at 85 m Hub Height (m/s)')
     ylabel('Energy Output (Wh) ');
     title([month(i,:),' Windspeed and Energy Distribution']);
     grid on
@@ -81,7 +81,7 @@ bar(x,hours); %creates a bar graph for windspeed distribution
 ylabel('Occurance');
 yyaxis right; %sets right y axis as preference for upcoming plot
 line(x,Energy); %creates a line graph for energy output per windspeed
-xlabel('Windspeed @85 m Hub Height (m/s)')
+xlabel('Windspeed at 85 m Hub Height (m/s)')
 ylabel('Energy Output (Wh) ');
 title('Feb Windspeed and Energy Distribution');
 grid on;
@@ -102,7 +102,10 @@ for i=1:length(r) % creates a plot at each radial position
     R = ones(1,length(xC));
     R = R .* r(i);
     plot3(xC,yC,R);  %Plot/draw out the airfoil cross section
+    title('Blade Geometry for a DU40 Airfoil Profile');
+    xlabel('x (m)'); ylabel('y (m)'); zlabel('Radial position along blade (m)');
     hold on;        %keeps each of the previous plots
+    grid on
 end
 end
 
