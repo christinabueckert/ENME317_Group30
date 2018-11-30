@@ -1,7 +1,7 @@
 %{
 % ENME 337, Final Project 
 % Due Dec 3, 2018 WOOOOOO WOOOOO #2
-% given city: calgary, hub height: 85m, air foil: DU40
+% Given city: Calgary, hub height: 85m, air foil: DU40
 %}
 clc;clear;close all;
 
@@ -9,6 +9,7 @@ clc;clear;close all;
 HH=85; %Hub height given in metres 
 cvn=1000/3600; %conversion factor to multiply by to convert from km/h to m/s
 pop = 1237656; % popultion of Calgary in 2016
+  
   %WIND SPEED DATA
 fileData(cvn); %initializes function the sets up all the wind data
 % sets up each months vector of wind speed
@@ -35,39 +36,39 @@ a_c = 0.2;
 cut_in = 3;
 cut_off = 25; 
 
+  %OTHER PARAMETERS
 load('DataFiles/radius.dat'); load('DataFiles/omega.dat'); load('DataFiles/twist.dat');
 load('DataFiles/chord.dat'); load('DataFiles/DU21.dat'); load('DataFiles/DU30.dat');
 load('DataFiles/DU35.dat'); load('DataFiles/DU40.dat'); load('DataFiles/NACA64.dat');
 %Sets of functions wrt r
-r = radius   ; % radial positions along the blade r 
-c = chord; % chord of the blade at different radial positions
+r = radius;     % radial positions along the blade r 
+c = chord;      % chord of the blade at different radial positions
 twist = (pi/180).*twist; % twist angle of the blade in degrees at different radial positions 
-
 w = (2*pi/60).*omega;    % rotational speed for different wind speeds
-B = 3;
-V0 = 1:1:25;
+B = 3;          % sets blade count to 3 blades
+V0 = 1:1:25;    % initial V0 vector
 
 %% Computation of Power Production
 power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
 
 %% Calculates the number of turbines needed
-
+% compute then output the number of turbines needed
 [numberOfTurbines, turbinePower, powerNeeded] = calcNumTurbines(power,pop);
 fprintf('The population of the City of Calgary in 2016 was %d. Assuming the electricity consumption per capita is 16.5 MWh,\nthe power needed for the city per year is %.2f MWh.\n',pop,powerNeeded);
 fprintf('A single turbine produced %.2f MWh in 2017, therefore the number of turbines required to power the City of Calgary\nin 2017 would have been %d.\n',turbinePower,numberOfTurbines);
 
-      %%
-   %Plots
-   %initalizing matricies for windspeeds based on # of days in month and a
-%vector containing all data points for wind directions throuought the year
+%% Plots
+%initalizing matricies for windspeeds based on # of days in month and a
 %(USED FOR PLOTS)
-  WS31=[JanWS;MarWS;MayWS;JulyWS;AugWS;OctWS;DecWS]; 
-  WS30=[AprWS;JuneWS;SeptWS;NovWS];
-  WS28=[FebWS];
-WD=[Jan_WD,Feb_WD,Mar_WD,Apr_WD,May_WD,June_WD,July_WD,...
-    Aug_WD,Sept_WD,Oct_WD,Nov_WD,Dec_WD];
-WS=[JanWS,FebWS,MarWS,AprWS,MayWS,JuneWS,JulyWS,...
-    AugWS,SeptWS,OctWS,NovWS,DecWS];
+WS31 = [JanWS;MarWS;MayWS;JulyWS;AugWS;OctWS;DecWS]; 
+WS30 = [AprWS;JuneWS;SeptWS;NovWS];
+WS28 = FebWS;
+%vector containing all wind direction values throughout the year
+WD = [Jan_WD,Feb_WD,Mar_WD,Apr_WD,May_WD,June_WD,July_WD,...
+        Aug_WD,Sept_WD,Oct_WD,Nov_WD,Dec_WD];
+%vector containing all wind speed values throughout the year
+WS = [JanWS,FebWS,MarWS,AprWS,MayWS,JuneWS,JulyWS,...
+        AugWS,SeptWS,OctWS,NovWS,DecWS];
 WindPlot(WD,WS,WS31,WS30,WS28,chord,twist,r,power);
    
         
