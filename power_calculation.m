@@ -60,7 +60,16 @@ for i = 3:25
          P(i) = 5.e+6;
      end   
 end
-plot(V0,P);
+plot(V0,P,'Color','red','Linewidth',3);
+ylabel('Rotor Power [W]');
+xlabel('Windspeed (m/s) at Hub Height of 85 meters');
 ylim([0 6.e+6]);
+title('Power vs Windspeed at 85 meters');
+legend('Power');
+
+
+
+
+
 end
 
