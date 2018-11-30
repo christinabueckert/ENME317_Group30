@@ -6,33 +6,34 @@ profile = DU40;
 M_i = zeros(1,length(r)-1);
 %sum_t = 0;
 P = zeros(25,1);
-for i = 3:25
+for i = 3:25 % iterates through each windspeed from 3 m/s to 5 m/s
     tan_load = zeros(17,1);
     for j = 1:17 % iterates through radius indexes 1 through 17
-        a = 0;
+        a = 0;         % a values have to be reset each time so that we can enter the while loop for each iteration
         a_p = 0;
         a_new = 100;
         a_p_new = 100;
         while abs(a-a_new) >= 0.000001 || abs(a_p-a_p_new) >= 0.000001
-            a = a_new;          %reset the original a and a' values before 
+            a = a_new;          % reset the original a and a' values before 
             a_p = a_p_new;      % operating on the current value
-            % (2) Compute the flow angle.
+            % Compute the flow angle.
             phi_flow = atan((1-a)*V0(i)/((1+a_p)*w(i)*r(j))); 
-            % (3) Compute local angle of attack
+            % Compute local angle of attack
             alpha_attack = phi_flow - twist(j);
-            % (4) Determine C1(alpha) and C2(alpha) according to the given airfoil profile
+            % Determine Cl(alpha) and Cd(alpha) according to the given
+            % airfoil profile by interpolation
             Cl = interp1((pi/180)*profile(:,1),profile(:,2),alpha_attack);
             Cd = interp1((pi/180)*profile(:,1),profile(:,3),alpha_attack);
             % (5) Compute normalized force Cn and Ct
             Cn = (Cl*cos(phi_flow))+(Cd*sin(phi_flow));
             Ct = (Cl*sin(phi_flow))-(Cd*cos(phi_flow));
-            % Calculation for sigma which is the local solidity
+            % Calculation for sigma which is the local solidity for each 
             sigma_sol = c(j)*B/(2*pi*r(j));
             % (6) Calculate a' and a
             a_new = 1/(4*((sin(phi_flow))^2)/(sigma_sol*Cn)+1);
             a_p_new = 1/((4*sin(phi_flow)*cos(phi_flow))/(sigma_sol*Ct)-1);
             % Check to see if correction factor is needed
-            if a_new > a_c 
+            if a_new > a_c % If a_new is greater than 0.2, a correction factor is applied. 
                 % Claculation for constant K
                 K = 4*(sin(phi_flow))^2/(sigma_sol*Cn);
                 % Applying correction factor for a
