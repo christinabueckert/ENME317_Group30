@@ -91,7 +91,10 @@ for i=1:length(r) % creates a plot at each radial position
     poly = polyshape(X,Y,'Simplify',false); 
     %rotate the polygon based on the twist at each radial position
     airfoil = rotate(poly,rad2deg(twist(i)),[1/2 0]); 
-    plot(airfoil);  %Plot/draw out the airfoil cross section
+    [xC,yC] = boundary(airfoil);
+    R = ones(1,length(xC));
+    R = R .* r(i);
+    plot3(xC,yC,R);  %Plot/draw out the airfoil cross section
     hold on;        %keeps each of the previous plots
 end
 end
