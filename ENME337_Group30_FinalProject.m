@@ -1,6 +1,6 @@
 %{
 % ENME 337, Final Project 
-% Due Dec 3, 2018 WOOOOOO WOOOOO #2
+% Due Dec 3, 2018
 % Given city: Calgary, hub height: 85m, air foil: DU40
 %}
 clc;clear;close all;
