@@ -2,11 +2,16 @@ function [] = WindPlot(WD,WS31,WS30,WS28,chord,twist,r,Power)
 %% Create wind rose plot for wind direction data
 figure;
 %plot out the wind direction (WD)
-polarhistogram(WD,'FaceColor','red','FaceAlpha',.5);
+polarhistogram((WD-(pi/2)),'FaceColor','red','FaceAlpha',.5);
 grid on; title('Wind Rose Plot of Calgary Wind Throughout 2017'); %Title and set grids
-thetaticklabels({'North, 0°','30°','60°','East, 90°','120°','150°','South, 180°',...
-'210°','240°','West, 270°','300°','330°'}) %sets labels for 30° increments for wind direction
+% thetaticklabels({'East, 270°','240°','210°','South, 180°','150°','120°','West, 90°',...
+% '60°','30°','North, 0°','330°','300°'}) %sets labels for 30° increments for wind direction
+thetaticks()
+thetaticklabels({'E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N','NNE','NE','ENE'}) %sets labels for 30° increments for wind direction
+% thetaticklabels({'North, 0°','30°','60°','East, 90°','120°','150°','South, 180°',...
+% '210°','240°','West, 270°','300°','330°'}) %sets labels for 30° increments for wind direction
 legend('Freq.of Wind Occurance (In # of Hours)','location','southoutside');
+set(gca,'ThetaDir','clockwise');
 
 %% Relative distribution of wind speed// energy output
 Power=[0;Power];        %adds the power output for windspeed = 0
@@ -92,7 +97,9 @@ for i=1:length(r) % creates a plot at each radial position
     %rotate the polygon based on the twist at each radial position
     airfoil = rotate(poly,rad2deg(twist(i)),[1/2 0]); 
     [xC,yC] = boundary(airfoil);
-    plot3(xC,yC,r();  %Plot/draw out the airfoil cross section
+    R = ones(1,length(xC));
+    R = R .* r(i);
+    plot3(xC,yC,R);  %Plot/draw out the airfoil cross section
     hold on;        %keeps each of the previous plots
 end
 end

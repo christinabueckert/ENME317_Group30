@@ -2,11 +2,12 @@ function [] = WindPlot(WD,WS31,WS30,WS28,chord,twist,r,Power)
 %% Create wind rose plot for wind direction data
 figure;
 %plot out the wind direction (WD)
-polarhistogram(WD,'FaceColor','red','FaceAlpha',.5);
+polarhistogram((WD-(pi/2)),'FaceColor','red','FaceAlpha',.5);
 grid on; title('Wind Rose Plot of Calgary Wind Throughout 2017'); %Title and set grids
-thetaticklabels({'North, 0°','30°','60°','East, 90°','120°','150°','South, 180°',...
-'210°','240°','West, 270°','300°','330°'}) %sets labels for 30° increments for wind direction
+thetaticks(0:45/2:360)
+thetaticklabels({'E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N','NNE','NE','ENE'}) %sets labels for 30° increments for wind direction
 legend('Freq.of Wind Occurance (In # of Hours)','location','southoutside');
+set(gca,'ThetaDir','clockwise');
 
 %% Relative distribution of wind speed// energy output
 Power=[0;Power];        %adds the power output for windspeed = 0
