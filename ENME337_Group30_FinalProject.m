@@ -66,8 +66,9 @@ fprintf('A single turbine produced %.2f MWh in 2017, therefore the number of tur
   WS28=[FebWS];
 WD=[Jan_WD,Feb_WD,Mar_WD,Apr_WD,May_WD,June_WD,July_WD,...
     Aug_WD,Sept_WD,Oct_WD,Nov_WD,Dec_WD];
-  
-WindPlot(WD,WS31,WS30,WS28,chord,twist,r,power);
+WS=[JanWS,FebWS,MarWS,AprWS,MayWS,JuneWS,JulyWS,...
+    AugWS,SeptWS,OctWS,NovWS,DecWS];
+WindPlot(WD,WS,WS31,WS30,WS28,chord,twist,r,power);
    
         
         
