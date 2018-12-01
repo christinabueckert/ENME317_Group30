@@ -1,11 +1,16 @@
-function [numTurbines, turbinePower, powerNeeded] = calcNumTurbines(P,pop)
+function [numTurbines, turbinePower, powerNeeded] = calcNumTurbines(P,pop,WS)
 %This funtion calculates the total power and thus the number of turbines
 %needed
 
 % from wikipedia page for 2016 pop = 1237656;
 
 % converts the units of power to Wh
-convertedPower = P*8760;
+convertedPower = 0;
+for j = 1:length(WS) %iterate through the 8760 hours and add up their corresponding power outputs
+    if WS(j) ~= 0   % doesn't take the 0th index of the matrix
+        convertedPower = convertedPower + P(WS(j));
+    end
+end
 
 % calculates the sum of the vector containing all the power values to
 % determine the total power produced by one windmill in a year, then
