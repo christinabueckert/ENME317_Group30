@@ -56,7 +56,7 @@ w = (2*pi/60).*omega;    % converts rotational speed for different wind speeds t
 B = 3;          % sets blade count to 3 blades
 V0 = 1:1:25;    % initial V0 vector containing wind speeds from 1-25 m/s
 
-% COMPUTES POWER PRODUCED BY ONE TURBINE
+% COMPUTES POWER PRODUCED BY ONE TURBINE AS A FUNCTION OF WIND SPEED
 power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
 
 % CALCULATES THE NUMBER OF TURBINES NEEDED
@@ -64,7 +64,7 @@ power  = power_calculation(V0,B,w,twist,c,r,p,a_c);
 
 % OUTPUTS THE NUMBER OF TURBINES NEEDED
 fprintf('The population of the City of Calgary in 2016 was %d. Assuming the electricity consumption per capita is 16.5 MWh,\nthe power needed for the city per year is %.2f MWh.\n',pop,powerNeeded);
-fprintf('A single turbine produced %.2f MWh in 2017, therefore the number of turbines required to power the City of Calgary\nin 2017 would have been %d.\n',turbinePower,numberOfTurbines);
+fprintf('A single turbine produced %.2f MWh in 2017, therefore the number of turbines required to power the City of Calgary\nin 2017, assuming the same population, would have been %d.\n',turbinePower,numberOfTurbines);
 
 % INITIALIZES MATRICIES FOR WIND SPEED BASED ON # OF DAYS IN THE MONTH
 WS31 = [JanWS;MarWS;MayWS;JulyWS;AugWS;OctWS;DecWS]; 
