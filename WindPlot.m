@@ -7,15 +7,15 @@ function [] = WindPlot(WD,WS,WS31,WS30,WS28,chord,twist,r,Power)
 % CREATES WIND ROSE PLOT SEPARATED BY WIND SPEED RANGES FOR WIND DIRECTION DATA
 figure;
 pax = polaraxes; % assigned and used below to edit default characteristics of polarhistogram plotting
-polarhistogram(WD(WS<=25),deg2rad(0:10:360),'FaceColor','r','FaceAlpha',1); hold on
+polarhistogram(WD(WS<=25),deg2rad(0:10:360),'FaceColor','r','FaceAlpha',1); hold on;
 polarhistogram(WD(WS<10),deg2rad(0:10:360),'FaceColor','y','FaceAlpha',1);
 polarhistogram(WD(WS<7),deg2rad(0:10:360),'FaceColor','g','FaceAlpha',1);
 polarhistogram(WD(WS<4),deg2rad(0:10:360),'FaceColor','b','FaceAlpha',1);
     
 % FORMATS WINDROSE PLOT
 grid on; title('Wind Rose Plot Calgary 2017: Hours per wind speed range'); % Sets title and turns grid on
-thetaticks(0:45/2:360) % sets values of theta axis ticks
-thetaticklabels({'N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'}) % sets tick labels for compass increments
+thetaticks(0:45/2:360); % sets values of theta axis ticks
+thetaticklabels({'N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'}); % sets tick labels for compass increments
 legend({'10-25 m/s','7-9 m/s','4-6 m/s','0-3 m/s'},'location','northeastoutside'); % creates legend
 % the following reflect default settings of polarhistogram over y=x to get for a compass layout
 pax.ThetaDir = 'clockwise';
@@ -42,20 +42,20 @@ for i = 1:7 % iterate through the 7 months with 31 days
     end
         
     % PLOTS WINDSPEED DISTRIBUTIONS AND ENERGY OUTPUT
-    figure
-    yyaxis left % sets left y axis as preference for upcoming plot
-    bar(x,hours) % creates a bar graph for windspeed distribution
-    ylabel('Occurence (hours/year)')
+    figure;
+    yyaxis left; % sets left y axis as preference for upcoming plot
+    bar(x,hours); % creates a bar graph for windspeed distribution
+    ylabel('Occurence (hours/year)');
     ylim([0,125]);
     if i == 5 
-        ylim([0,145])
+        ylim([0,145]);
     end
-    yyaxis right % sets right y axis as preference for upcoming plot
-    line(x,Energy,'Linewidth',3) % creates a line graph for energy output per windspeed
+    yyaxis right; % sets right y axis as preference for upcoming plot
+    line(x,Energy,'Linewidth',3); % creates a line graph for energy output per windspeed
     xlabel('Windspeed at 85 m Hub Height (m/s)');
     ylabel('Energy Output (Wh) ');
     title([month(i,:),' Windspeed and Energy Distribution']);
-    grid on  
+    grid on;  
 end
 
 % LOOPS THAT CREATE THE RELATIVE DISTRIBUTION OF WINDSPEED AND ENERGY
@@ -82,10 +82,10 @@ for i = 1:4 % iterate through the four months with 30 days
     ylim([0,125]);
     yyaxis right; % sets right y axis as preference for upcoming plot
     line(x,Energy,'Linewidth',3); % creates a line graph for energy output per windspeed
-    xlabel('Windspeed at 85 m Hub Height (m/s)')
+    xlabel('Windspeed at 85 m Hub Height (m/s)');
     ylabel('Energy Output (Wh) ');
     title([month(i,:),' Windspeed and Energy Distribution']);
-    grid on
+    grid on;
 end
     
 % CREATES THE RELATIVE DISTRIBUTION OF WINDSPEED AND ENERGY
@@ -109,7 +109,7 @@ ylabel('Occurence (hours/year)');
 ylim([0,125]);
 yyaxis right; %sets right y axis as preference for upcoming plot
 line(x,Energy,'Linewidth',3); %creates a line graph for energy output per windspeed
-xlabel('Windspeed at 85 m Hub Height (m/s)')
+xlabel('Windspeed at 85 m Hub Height (m/s)');
 ylabel('Energy Output (Wh) ');
 title('Feb Windspeed and Energy Distribution');
 grid on;
@@ -125,7 +125,7 @@ for i = 1:length(r) % creates a plot at each radial position
     % ACCOUNTS FOR THE FACT THAT AIRFOIL GEOMETRY DATA IS GIVEN IN X/C and Y/C
 	X = chord(i) * XprofileCoord; % multiplies x vector by chord length at that r
 	Y = chord(i) * YprofileCoord; % multiplies y vector by chord length at that r
-	axis([-1 5 -2 2.5])
+	axis([-1 5 -2 2.5]);
 
 	poly = polyshape(X,Y,'Simplify',false); % creates a polygon in the shape outlined by the airfoil data given 
     
@@ -140,7 +140,7 @@ for i = 1:length(r) % creates a plot at each radial position
 	title('Blade Geometry for a DU40 Airfoil');
 	xlabel('x (m)'); ylabel('y (m)'); zlabel('Radial position along blade (m)');
 	hold on; % keeps each of the previous plots
-	grid on % turns the grid on
+	grid on; % turns the grid on
 end
 
 end
