@@ -28,13 +28,13 @@ Power = [0;Power]; % adds the power output for windspeed = 0
 
 % LOOPS THAT CREATE THE RELATIVE DISTRIBUTION OF WINDSPEED AND ENERGY
 % OUTPUT PLOTS FOR MONTHS WITH 31 DAYS
+month = ['Jan';'Mar';'May';'Jul';'Aug';'Oct';'Dec']; % array of strings just for titles of figures
 for i = 1:7 % iterate through the 7 months with 31 days
     lowlim = min(WS31(i,:)); % finds lower limit of windspeed for the months with 31 days
     uplim = max(WS31(i,:)); % finds the upper limit of windspeed for the months with 31 days
     x = lowlim:uplim; % sets x as a vector from the lowest wind speed of the month to the fastest windspeed of the month incremented by 1
     hours = zeros(1,length(x)); % sets hours as a vector the same length of x
     Energy = zeros(1,length(x)); % sets energy as a vector the same length of  x
-    month = ['Jan';'Mar';'May';'Jul';'Aug';'Oct';'Dec']; % array of strings just for titles of figures
             
     for j = 1:length(hours)
     	hours(j) = sum(WS31(i,:) == x(j)); % sets each value of hours to the number of hours in that month that the wind speed was observed
@@ -60,14 +60,14 @@ end
 
 % LOOPS THAT CREATE THE RELATIVE DISTRIBUTION OF WINDSPEED AND ENERGY
 % OUTPUT PLOTS FOR MONTHS WITH 30 DAYS
+month = ['Apr';'Jun';'Sep';'Nov']; % array of strings just for titles of figures 
 for i = 1:4 % iterate through the four months with 30 days
     
 	lowlim = min(WS30(i,:)); % finds the lower limit of windspeed for the months with 30 days
 	uplim = max(WS30(i,:)); % finds the upper limit of windspeed for the months with 30 days
 	x = lowlim:uplim; % sets x as a vector from the lowest wind speed of the month to the fastest windspeed of the month incremented by 1
 	hours = zeros(1,length(x)); % sets hours as a vector the same length of x
-	Energy = zeros(1,length(x)); % sets energy as a vector the same length of  x
-	month = ['Apr';'Jun';'Sep';'Nov']; % array of strings just for titles of figures      
+	Energy = zeros(1,length(x)); % sets energy as a vector the same length of  x     
 	
     for j = 1:length(hours)
         hours(j) = sum(WS30(i,:) == x(j)); % sets each value of hours to the number of hours in that month that the wind speed was observed
@@ -132,8 +132,7 @@ for i = 1:length(r) % creates a plot at each radial position
 	% ROTATES THE POLYGON BASED ON TWIST AT EACH RADIAL POSITION
 	airfoil = rotate(poly,rad2deg(twist(i)),[1/2 0]); 
 	[xC,yC] = boundary(airfoil);
-	R = ones(1,length(xC));
-	R = R .* r(i);
+	R = ones(1,length(xC)).* r(i);
     
     % CREATES AND FORMATS THE PLOT
     plot3(xC,yC,R);  %Plot/draw out the airfoil cross section

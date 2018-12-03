@@ -3,17 +3,17 @@ function [P] = power_calculation(V0,B,w,twist,c,r,p,a_c)
 % power output of the windmill at speeds from 1-25 m/s
 
 % LOADS FILES AND INITIALIZES VARIABLES
-load('DataFiles/DU40.dat');
+load 'DataFiles/DU40.dat' DU40;
 profile = DU40;
 M_i = zeros(1,length(r)-1); % initializes a vector of zeros of
 P = zeros(25,1); % initializes a column of length 25
 
 % LOOPS THAT CALCULATE VALUES OF A AND A' FOR EACH WIND SPEED AT EACH
 % RADIUS AND CALCULATES POWER AT EACH WIND SPEED
-for i = 3:25 % iterates through each windspeed from 3 m/s to 5 m/s
+for i = 3:length(V0) % iterates through each windspeed from 3 m/s to 25 m/s
     tan_load = zeros(17,1);
     
-    for j = 1:17 % iterates through radius indexes 1 through 17
+    for j = 1:length(r) % iterates through radius indexes 1 through 17
         a = 0;         % a values have to be reset each time so that we can enter the while loop for each iteration
         a_p = 0;
         a_new = 100;
